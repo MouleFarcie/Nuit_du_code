@@ -5,6 +5,7 @@ def update():
     if pyxel.btn(pyxel.KEY_SPACE):
         print("connardouhiughiuh")
         print("test")
+        print("j'en ai marre")
 
 def draw():
     pyxel.rect(0,0,3,3,9)
