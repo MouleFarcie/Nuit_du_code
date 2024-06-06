@@ -1,6 +1,6 @@
 import pyxel
 import math
-pyxel.init(256, 256, title="NDC 2024")
+pyxel.init(128, 128, title="NDC 2024")
 pyxel.load("theme2.pyxres")
 
 #joueur
@@ -24,7 +24,7 @@ def hide():
 
 def colli_joueur_clef():
     global clefs
-    if pyxel.tilemap(0).pget(px//8,py//8)==(6,7):
+    if pyxel.tilemap(0).pget((px+8)//8,(py+8)//8) in [(0,2),(0,3)]:
         pyxel.tilemap(0).pset(px//8,py//8,(0,0))
 
 
