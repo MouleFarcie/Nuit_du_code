@@ -52,7 +52,7 @@ def depv():
         py += 2
     if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget(px//8,(py-2)//8) not in tuiles_inter:
         py -= 2
-        
+
 def cam():
     global cpx, cpy, px, py
     cpx = px-60
@@ -100,7 +100,7 @@ def draw():
     hide()
     pyxel.blt(px,py,0,32,0,16,16,0)
     pyxel.blt(capx,capy,0,0,32,16,16,0)
-    pyxel.blt((capx+1+px/32),(capy+1+py/32),0,16,32,1,1,0)
+    pyxel.blt((capx+1+px/28),(capy+1+py/28),0,16,32,1,1,0)
 
     pyxel.camera(cpx,cpy)
 
