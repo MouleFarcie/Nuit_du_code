@@ -19,9 +19,6 @@ capy = 0
 
 ccx = 1
 ccy = 1
-#clefs (3)
-
-#coffre
 
 tuiles_inter = [(4,2),(2,2),(2,3),(3,2),(3,3)]
 
@@ -101,8 +98,8 @@ def menuu():
         ccy += sens
             
 
-        if pyxel.btn(pyxel.KEY_SPACE):
-            menu = 1
+    if pyxel.btn(pyxel.KEY_SPACE):
+        menu = 1
     
 
 def update():
@@ -119,7 +116,7 @@ def draw():
 
     if menu == 0:
         pyxel.camera(ccx,ccy)
-
+        pyxel.text(ccx+60, ccy+90, "salut", 5)
     if menu == 1:
         hide()
         pyxel.blt(px,py,0,32,0,16,16,0)
