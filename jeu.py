@@ -1,12 +1,13 @@
 import pyxel
 import math
+import random
 pyxel.init(128, 128, title="NDC 2024")
 pyxel.load("theme2.pyxres")
 
 #joueur
 px = 70
 py = 70
-
+nb_clefs = 0
 #cam
 cpx = px-60
 cpy = py-60
@@ -25,14 +26,18 @@ def hide():
                 pyxel.rect(i*8,j*8,8,8,2)
 
 def colli_joueur_clef():
-    global clefs
+    global clefs, nb_clefs
     if pyxel.tilemap(0).pget((px+8)//8,(py+8)//8) in [(0,2),(0,3)]:
         pyxel.tilemap(0).pset((px+8)//8,(py+8)//8,(0,0))
+        nb_clefs+=1
         if pyxel.tilemap(0).pget((px+8)//8,(py+8)//8+1) in [(0,2),(0,3)]:
             pyxel.tilemap(0).pset((px+8)//8,(py+8)//8+1,(0,0))
         else:
             pyxel.tilemap(0).pset((px+8)//8,(py+8)//8-1,(0,0))
 
+def spawn_coffre():
+    if nb_clefs == 3:
+        pyxel.tilemap(0).pset(16//8,16//8,(2,0))
 
 def depv():
     global px, py
@@ -63,6 +68,7 @@ def update():
     colli_joueur_clef()
     hide()
     cam()
+    spawn_coffre()
 
 def draw():
     pyxel.cls(3)
