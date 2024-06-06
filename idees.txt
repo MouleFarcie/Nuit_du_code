@@ -1,0 +1,2 @@
+faire une boussole qui indique la position du coffre
+coffre sous terre et doit être déterré avec une pelle

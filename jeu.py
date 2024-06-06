@@ -1,4 +1,5 @@
 import pyxel
+import math
 pyxel.init(128, 128, title="NDC 2024")
 pyxel.load("theme2.pyxres")
 
@@ -26,13 +27,18 @@ def depv():
         py += 1
     if pyxel.btn(pyxel.KEY_UP) and py > 0:
         py -= 1
-
+def hide():
+    for i in range(px//8,px//8+17):
+        for j in range(16):
+            if math.sqrt((px+60-i*8)**2+(py+60-j*8)**2)>40:
+                pyxel.rect(i*8,j*8,8,8,0)
+                
 def update():
     depv()
     colli_joueur_clef()
 
 def draw():
-    pyxel.cls(0)
+    pyxel.cls(3)
     pyxel.blt(px,py,0,32,0,16,16,0)
     for clef in clefs:
         pyxel.blt(clef[0],clef[1],0,0,16,8,16,0)
