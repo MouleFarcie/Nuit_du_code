@@ -24,15 +24,15 @@ def colli_joueur_clef():
             clefs.remove(clef)
 
 def depv():
-    global x, y
+    global px, py
     if pyxel.btn(pyxel.KEY_RIGHT):
-        x += 1
+        px += 1
     if pyxel.btn(pyxel.KEY_LEFT):
-        x -= 1
+        px -= 1
     if pyxel.btn(pyxel.KEY_DOWN):
-        y += 1
+        py += 1
     if pyxel.btn(pyxel.KEY_UP):
-        y -= 1
+        py -= 1
         
 def update():
     depv()
