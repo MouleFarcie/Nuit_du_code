@@ -26,7 +26,7 @@ def hide():
                 pyxel.rect(i*8,j*8,8,8,2)
 
 def colli_joueur_clef():
-    global clefs, nb_clefs
+    global nb_clefs
     if pyxel.tilemap(0).pget((px+8)//8,(py+8)//8) in [(0,2),(0,3)]:
         pyxel.tilemap(0).pset((px+8)//8,(py+8)//8,(0,0))
         nb_clefs+=1
