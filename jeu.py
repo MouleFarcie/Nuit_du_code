@@ -15,6 +15,8 @@ cpy = py-60
 clefs = []
 #coffre
 
+tuiles_inter = [(1,0)]
+
 def hide():
     global px, py
     for i in range(px//8, px//8+17):
@@ -34,14 +36,14 @@ def colli_joueur_clef():
 
 def depv():
     global px, py
-    if pyxel.btn(pyxel.KEY_RIGHT) :
-        px += 1
-    if pyxel.btn(pyxel.KEY_LEFT):
-        px -= 1
-    if pyxel.btn(pyxel.KEY_DOWN):
-        py += 1
-    if pyxel.btn(pyxel.KEY_UP):
-        py -= 1
+    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(px//8+1,(py+4)//8) not in tuiles_inter :
+        px += 2
+    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget(px//8,(py+4)//8) not in tuiles_inter:
+        px -= 2
+    if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget((px+4)//8,py//8+1) not in tuiles_inter:
+        py += 2
+    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget((px+4)//8,(py-1)//8) not in tuiles_inter:
+        py -= 2
 
 def cam():
     global cpx, cpy, px, py
@@ -49,12 +51,12 @@ def cam():
     cpy = py-60
     if py<60:
         cpy = 0
-    if py>186:
-        cpy = 128
+    if py>322:
+        cpy = 256
     if px<60:
         cpx = 0
-    if px>186:
-        cpx = 128
+    if px>322:
+        cpx = 256
 
 def update():
     depv()
@@ -64,7 +66,7 @@ def update():
 
 def draw():
     pyxel.cls(3)
-    pyxel.bltm(0,0,0,0,0,256,256)
+    pyxel.bltm(0,0,0,0,0,384,384)
     pyxel.blt(px,py,0,32,0,16,16,0)
     
 
