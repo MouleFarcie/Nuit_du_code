@@ -1,5 +1,6 @@
 import pyxel
 pyxel.init(128, 128, title="NDC 2024")
+pyxel.load("theme2.pyxres")
 
 def update():
     if pyxel.btn(pyxel.KEY_Q):
