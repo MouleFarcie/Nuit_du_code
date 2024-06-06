@@ -6,7 +6,7 @@ def update():
         print("connardouhiugh      iuh")
         print("test")
         print("j'en pasaoifdhuzgfyzieufgzefpas ai ma   rre erighergkuygeuyerhguydehgueguerhiuergh")
-
+        print("salut")
 def draw():
     pyxel.rect(0,0,3,3,9)
 
