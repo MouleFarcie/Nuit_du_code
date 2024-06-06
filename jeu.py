@@ -6,9 +6,15 @@ pyxel.load("theme2.pyxres")
 px = 64
 py = 64
 
+#cam
+cpx = px-60
+
+cpy = py-60
+
 #clefs (3)
 clefs = [(0,10),(64,58),(100,12)]
 #coffre
+
 
 def colli_joueur_clef():
     global clefs
@@ -17,16 +23,16 @@ def colli_joueur_clef():
             clefs.remove(clef)
 
 def depv():
-    global x, y
-    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(x//8+1,(y+4)//8) not in tuiles_inter:
-        x += 1
-    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget(x//8,(y+4)//8) not in tuiles_inter:
-        x -= 1
-    if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget((x+4)//8,y//8+1) not in tuiles_inter:
-        y += 1
-    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget((x+4)//8,(y-1)//8) not in tuiles_inter:
-        y -= 1
-        
+    global px, py
+    if pyxel.btn(pyxel.KEY_RIGHT):
+        px += 1
+    if pyxel.btn(pyxel.KEY_LEFT):
+        px -= 1
+    if pyxel.btn(pyxel.KEY_DOWN):
+        py += 1
+    if pyxel.btn(pyxel.KEY_UP):
+        py -= 1
+
 def update():
     depv()
     colli_joueur_clef()
@@ -34,6 +40,8 @@ def update():
 def draw():
     pyxel.cls(0)
     pyxel.blt(px,py,0,32,0,16,16,0)
+    pyxel.bltm(0,0,0,0,0,128,128)
+    pyxel.camera(cpx,cpy)
     for clef in clefs:
         pyxel.blt(clef[0],clef[1],0,0,16,8,16,0)
 
