@@ -13,9 +13,8 @@ clefs = [(0,10),(64,58),(100,12)]
 def colli_joueur_clef():
     global clefs
     for clef in clefs:
-        if clef[0]-16<px<clef[0]+8 and clef[1]+16<py<clef[0]+16:
-            print("capture")
-
+        if clef[0]-16<px<clef[0]+8 and clef[1]-16<py<clef[0]+16:
+            clefs.remove(clef)
 
 def depv():
     global px, py
@@ -34,7 +33,7 @@ def update():
 
 def draw():
     pyxel.cls(0)
-    pyxel.blt(px,py,0,0,0,16,16,0)
+    pyxel.blt(px,py,0,32,0,16,16,0)
     for clef in clefs:
         pyxel.blt(clef[0],clef[1],0,0,16,8,16,0)
 
