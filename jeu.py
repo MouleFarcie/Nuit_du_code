@@ -22,7 +22,7 @@ bouy = 0
 #joueur
 px = 32
 py = 32
-nb_clefs = 3
+nb_clefs = 0
 vie = 3
 
 #blobs
@@ -222,36 +222,47 @@ def update():
         spawn_coffre()
         carte()
         boussole()
-        blob_dep()
+        #blob_dep()
         colli_joueur_blob()
         col_coffre()
         
 def draw():
     pyxel.cls(3)
-    pyxel.bltm(0,0,0,0,0,384,384)
+    if menu !=2 and menu!= 3:
+        pyxel.bltm(0,0,0,0,0,384,384)
 
     if menu == 0:
         pyxel.camera(ccx,ccy)
         pyxel.text(ccx+30, ccy+100, "PRESS SPACE TO START", 5)
+        pyxel.text(ccx+50, ccy+50, "Labymind", 5)
     if menu == 1:
         hide()
-        pyxel.blt(px,py,0,32,0,16,16,0)
+        if pyxel.frame_count%30<15:
+            pyxel.blt(px,py,0,32,0,16,16,0)
+        else:
+            pyxel.blt(px,py,0,48,0,16,16,0)
+
         pyxel.blt(capx,capy,0,0,32,16,16,0)
 
         pyxel.blt((capx+1+px/28),(capy+1+py/28),0,16,32,1,1,0)
 
         pyxel.blt(capx,capy+20,0,boux,bouy,8,8,0)
 
-        pyxel.camera(cpx,cpy)
+        pyxel.text(capx+20,capy,"clefs :"+str(nb_clefs), 5)
+        
+        pyxel.text(capx+20,capy+10,"vie :"+str(vie),5)
 
+        pyxel.camera(cpx,cpy)
         if blob[2] == "right":
             pyxel.blt(blob[0],blob[1],0,18,52,12,12,0)
         elif blob[2] == "left":
             pyxel.blt(blob[0],blob[1],0,2,52,12,12,0)
+
+        
     if menu==2:
-        pyxel.text(ccx+30, ccy+50, "GAME OVER", 5)
+        pyxel.text(blob[0]-10, blob[1]-10, "GAME OVER", 0)
     
     if menu==3:
-        pyxel.text(ccx+30, ccy+50, "CONGRATULATIONS", 5)
+        pyxel.text(px-20, py-20, "CONGRATULATIONS", 0)
 
 pyxel.run(update,draw)
