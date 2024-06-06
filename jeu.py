@@ -10,6 +10,6 @@ def update():
         pyxel.quit()
         
 def draw():
-    pyxel.rect(0,0,3,127,9)
+    pyxel.blt(px,py,0,0,0,16,16,0)
 
 pyxel.run(update,draw)
