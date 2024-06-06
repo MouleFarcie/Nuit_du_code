@@ -25,13 +25,13 @@ def colli_joueur_clef():
 
 def depv():
     global x, y
-    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(x//8+1,(y+4)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_RIGHT):
         x += 1
-    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget(x//8,(y+4)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_LEFT):
         x -= 1
-    if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget((x+4)//8,y//8+1) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_DOWN):
         y += 1
-    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget((x+4)//8,(y-1)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_UP):
         y -= 1
         
 def update():
