@@ -234,7 +234,7 @@ def draw():
     if menu == 0:
         pyxel.camera(ccx,ccy)
         pyxel.text(ccx+30, ccy+100, "PRESS SPACE TO START", 5)
-        pyxel.text(ccx+50, ccy+50, "Labymind", 5)
+        pyxel.text(ccx+50, ccy+50, "Labymine", 5)
     if menu == 1:
         hide()
         if pyxel.frame_count%30<15:
