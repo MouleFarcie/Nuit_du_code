@@ -10,7 +10,11 @@ py = 64
 clefs = [(0,10),(64,58),(100,12)]
 #coffre
 
-
+def colli_joueur_clef():
+    global clefs
+    for clef in clefs:
+        if clef[0]-16<px<clef[0]+8 and clef[1]+16<py<clef[0]+16:
+            print("capture")
 
 
 def depv():
@@ -25,10 +29,8 @@ def depv():
         py -= 1
 
 def update():
-    if pyxel.btn(pyxel.KEY_Q):
-        pyxel.quit()
-    
     depv()
+    colli_joueur_clef()
 
 def draw():
     pyxel.cls(0)
