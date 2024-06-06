@@ -33,6 +33,9 @@ def colli_joueur_clef():
         else:
             pyxel.tilemap(0).pset((px+8)//8,(py+8)//8-1,(0,0))
 
+def spawn_coffre():
+    if nb_clefs == 3:
+        pyxel.tilemap(0).pset(16//8,16//8,(2,0))
 
 def depv():
     global px, py
@@ -63,6 +66,7 @@ def update():
     colli_joueur_clef()
     hide()
     cam()
+    spawn_coffre()
 
 def draw():
     pyxel.cls(3)
