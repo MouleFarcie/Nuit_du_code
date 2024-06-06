@@ -4,8 +4,8 @@ pyxel.init(128, 128, title="NDC 2024")
 pyxel.load("theme2.pyxres")
 
 #joueur
-px = 120
-py = 0
+px = 70
+py = 70
 
 #cam
 cpx = px-60
@@ -24,7 +24,7 @@ def hide():
 
 def colli_joueur_clef():
     global clefs
-    if pyxel.tilemap(0).pget((px+8)//8,(py+8)//8) in [(0,2),(0,3)]:
+    if pyxel.tilemap(0).pget(px//8,py//8)==(6,7):
         print("oihiuhiu")
         pyxel.tilemap(0).pset((px+8)//8,(py+8)//8,(0,0))
         if pyxel.tilemap(0).pget((px+8)//8+1,(py+8)//8+1) in [(0,2),(0,3)]:
@@ -33,7 +33,7 @@ def colli_joueur_clef():
 
 def depv():
     global px, py
-    if pyxel.btn(pyxel.KEY_RIGHT):
+    if pyxel.btn(pyxel.KEY_RIGHT) :
         px += 1
     if pyxel.btn(pyxel.KEY_LEFT):
         px -= 1
@@ -43,9 +43,17 @@ def depv():
         py -= 1
 
 def cam():
-    global cpx, cpy
-    cpx = px -60
+    global cpx, cpy, px, py
+    cpx = px-60
     cpy = py-60
+    if py<60:
+        cpy = 0
+    if py>186:
+        cpy = 128
+    if px<60:
+        cpx = 0
+    if px>186:
+        cpx = 128
 
 def update():
     depv()
