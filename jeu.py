@@ -74,12 +74,6 @@ def draw():
     pyxel.cls(3)
     pyxel.bltm(0,0,0,0,0,384,384)
     pyxel.blt(px,py,0,32,0,16,16,0)
-    
-
-
-
-    for clef in clefs:
-        pyxel.blt(clef[0],clef[1],0,0,16,8,16,0)
     pyxel.camera(cpx,cpy)
 
 pyxel.run(update,draw)
