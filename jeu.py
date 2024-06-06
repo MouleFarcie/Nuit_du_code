@@ -4,6 +4,8 @@ import random
 pyxel.init(128, 128, title="NDC 2024")
 pyxel.load("theme2.pyxres")
 
+menu = 0
+sens = 1
 #joueur
 px = 32
 py = 32
@@ -15,8 +17,8 @@ cpy = py-60
 capx = 0
 capy = 0
 
-ccx = 0
-ccy = 0
+ccx = 1
+ccy = 1
 #clefs (3)
 
 #coffre
@@ -88,11 +90,17 @@ def carte():
         capy = 384-118
         
 def menuu():
-    global ccx, ccy, menu
+    global ccx, ccy, menu, sens
     
     if menu == 0:
-        ccx+=1
-        ccy+=1
+        if ccx == 248:
+            sens = -1
+        if ccx == 1:
+            sens = 1
+        ccx += sens
+        ccy += sens
+            
+
         if pyxel.btn(pyxel.KEY_SPACE):
             menu = 1
     
