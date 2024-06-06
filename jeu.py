@@ -38,18 +38,28 @@ def depv():
         py += 1
     if pyxel.btn(pyxel.KEY_UP):
         py -= 1
-        
+
+def cam():
+    global cpx, cpy
+    cpx = px -60
+    cpy = py-60
+
 def update():
     depv()
     colli_joueur_clef()
     hide()
+    cam()
 
 def draw():
     pyxel.cls(3)
     pyxel.bltm(0,0,0,0,0,256,256)
     pyxel.blt(px,py,0,32,0,16,16,0)
-    pyxel.camera(cpx,cpy)
+    
+
+
+
     for clef in clefs:
         pyxel.blt(clef[0],clef[1],0,0,16,8,16,0)
+    pyxel.camera(cpx,cpy)
 
 pyxel.run(update,draw)
