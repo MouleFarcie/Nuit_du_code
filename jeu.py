@@ -31,6 +31,7 @@ def update():
     depv()
 
 def draw():
+    pyxel.cls(0)
     pyxel.blt(px,py,0,0,0,16,16,0)
     for clef in clefs:
         pyxel.blt(clef[0],clef[1],0,0,16,8,16,0)
