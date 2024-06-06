@@ -18,14 +18,14 @@ capy = 0
 
 #coffre
 
-tuiles_inter = [(1,0)]
+tuiles_inter = [(4,2)]
 
 def hide():
     global px, py
-    for i in range(px//8-16, px//8+16):
+    for i in range(px//8-10, px//8+10):
         for j in range(py//8-10, py//8+10):
             if math.sqrt((px-i*8)**2+(py-j*8)**2)>40:
-                pyxel.rect(i*8,j*8,8,8,0)
+                pyxel.rect(i*8,j*8,16,16,0)
 
 def colli_joueur_clef():
     global nb_clefs
