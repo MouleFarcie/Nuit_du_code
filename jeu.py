@@ -13,7 +13,7 @@ cpx = px-60
 cpy = py-60
 
 #clefs (3)
-clefs = []
+
 #coffre
 
 tuiles_inter = [(1,0)]
