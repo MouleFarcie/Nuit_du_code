@@ -24,8 +24,8 @@ def hide():
 
 def colli_joueur_clef():
     global clefs
-    if pyxel.tilemap(0).pget(x//8,y//8)==(6,7):
-        pyxel.tilemap(0).pset(x//8,y//8,(0,0))
+    if pyxel.tilemap(0).pget(px//8,py//8)==(6,7):
+        pyxel.tilemap(0).pset(px//8,py//8,(0,0))
 
 
 def depv():
