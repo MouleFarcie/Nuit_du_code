@@ -13,9 +13,8 @@ clefs = [(0,10),(64,58),(100,12)]
 def colli_joueur_clef():
     global clefs
     for clef in clefs:
-        if clef[0]-16<px<clef[0]+8 and clef[1]+16<py<clef[0]+16:
-            print("capture")
-
+        if clef[0]-16<px<clef[0]+8 and clef[1]-16<py<clef[0]+16:
+            clefs.remove(clef)
 
 def depv():
     global x, y
