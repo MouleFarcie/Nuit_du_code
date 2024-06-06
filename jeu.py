@@ -3,7 +3,7 @@ pyxel.init(128, 128, title="NDC 2024")
 
 def update():
     if pyxel.btn(pyxel.KEY_SPACE):
-        print("connardouhiughiuh")
+        print("connardouhiugh      iuh")
         print("test")
         print("j'en pasaoifdhuzgfyzieufgzefpas ai ma   rre erighergkuygeuyerhguydehgueguerhiuergh")
 
