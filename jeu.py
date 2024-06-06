@@ -12,7 +12,7 @@ cpx = px-60
 cpy = py-60
 
 #clefs (3)
-clefs = [(0,10),(64,58),(100,12)]
+clefs = []
 #coffre
 
 def hide():
@@ -25,7 +25,10 @@ def hide():
 def colli_joueur_clef():
     global clefs
     if pyxel.tilemap(0).pget((px+8)//8,(py+8)//8) in [(0,2),(0,3)]:
-        pyxel.tilemap(0).pset(px//8,py//8,(0,0))
+        print("oihiuhiu")
+        pyxel.tilemap(0).pset((px+8)//8,(py+8)//8,(0,0))
+        if pyxel.tilemap(0).pget((px+8)//8+1,(py+8)//8+1) in [(0,2),(0,3)]:
+            pyxel.tilemap(0).pset((px+8)//8,(py+8)//8,(0,0))
 
 
 def depv():
