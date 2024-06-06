@@ -6,11 +6,29 @@ pyxel.load("theme2.pyxres")
 
 menu = 0
 sens = 1
+
+cocx = 50
+cocy = 70
+
+ang1 = 0
+ang2 = 0
+dire1 = 1
+dire2 = 1
+boux = 0
+bouy = 0
+
+
 #joueur
 px = 32
 py = 32
 nb_clefs = 0
 vie = 3
+
+#blobs
+blobs = []
+temps_blob = 0
+niveau = 1
+
 #cam
 cpx = px-60
 cpy = py-60
@@ -29,6 +47,26 @@ def hide():
         for j in range(py//8-24, py//8+24):
             if math.sqrt((px-i*8)**2+(py-j*8)**2)>40:
                 pyxel.rect(i*8,j*8,8,8,0)
+
+def blobs_app():
+    global blobs, temps_blob, niveau
+    x = 0
+    y = 0
+    if pyxel.frame_count-temps_blob==30 and len(blobs)<5:
+        while pyxel.tilemap(0).pget(x//8,y//8) in tuiles_inter:
+            if niveau == 0 or niveau == 1:
+                blobs.append([random.randint(0,384),random.randint(0,384),1,1,1,1,"right"])#x,y,vie,dégâts,vitesse ,niveau
+                temps_blob = pyxel.frame_count
+            elif niveau == 2:
+                blobs.append([random.randint(0,384),random.randint(0,384),2,1,1,2,"right"])
+                temps_blob = pyxel.frame_count
+            elif niveau == 3:
+                blobs.append([random.randint(0,384),random.randint(0,384),3,1,1,3,"right"])
+                temps_blob = pyxel.frame_count
+            else:
+                print(niveau)
+        if pyxel.frame_count-temps_blob>30:
+            temps_blob = pyxel.frame_count
 
 def colli_joueur_clef():
     global nb_clefs
@@ -86,7 +124,66 @@ def carte():
     
     if py>=(384-62):
         capy = 384-118
+
+def boussole():
+    global ang1, ang2, dire1, dire2, boux, bouy
+    
+    ang1 = px - cocx
+    
+    ang2 = py - cocy
+    
+    print(ang1,ang2)
+    
+    if ang1 <0:
+        print ("droite")
+        dire1 = 1
         
+    if ang1 >0:
+        print ("gauche")
+        dire1 = 2
+    
+    
+    if ang2 <0:
+        print ("bas")
+        dire2 = 1
+        
+    if ang2 >0:
+        print("haut")
+        dire2 = 2
+        
+    if dire1 == 1 and dire2 == 1:
+        boux = 48
+        bouy = 24
+        
+    if dire1 == 1 and dire2 == 2:
+        boux = 40
+        bouy = 16
+    
+    if dire1 == 2 and dire2 == 2:
+        boux = 40
+        bouy = 24
+    
+    if dire1 == 2 and dire2 == 1:
+        boux = 48
+        bouy = 16
+        
+    if ang1 == 0 and ang2 > 0 :
+        boux = 64
+        bouy = 24
+        
+    if ang1 == 0 and ang2 < 0 :
+        boux = 56
+        bouy = 24
+        
+    if ang2 == 0 and ang1 > 0 :
+        boux = 64
+        bouy = 16
+        
+    if ang2 == 0 and ang1 < 0 :
+        boux = 56
+        bouy = 16
+
+
 def menuu():
     global ccx, ccy, menu, sens
     
@@ -110,7 +207,7 @@ def update():
     spawn_coffre()
     carte()
     menuu()
-    
+    boussole()
 def draw():
     pyxel.cls(3)
     pyxel.bltm(0,0,0,0,0,384,384)
@@ -124,6 +221,53 @@ def draw():
         pyxel.blt(capx,capy,0,0,32,16,16,0)
 
         pyxel.blt((capx+1+px/28),(capy+1+py/28),0,16,32,1,1,0)
+
+        pyxel.blt(capx,capy+20,0,boux,bouy,8,8,0)
+
         pyxel.camera(cpx,cpy)
+
+        for blob in blobs:
+            if blob[5] == 1 and blob[6] == "left":
+                if pyxel.frame_count%30<10:
+                    pyxel.blt(blob[0],blob[1],0,2,52,12,12,5)
+                elif 10<=pyxel.frame_count%30<20:
+                    pyxel.blt(blob[0],blob[1]+2,0,16,54,16,10,5)
+                else:
+                    pyxel.blt(blob[0],blob[1]+4,0,32,56,16,8,5)
+            elif blob[5] == 1 and blob[6] == "right":
+                if pyxel.frame_count%30<10:
+                    pyxel.blt(blob[0],blob[1],0,50,52,12,12,5)
+                elif 10<=pyxel.frame_count%30<20:
+                    pyxel.blt(blob[0],blob[1]+2,0,64,54,16,10,5)
+                else:
+                    pyxel.blt(blob[0],blob[1]+4,0,80,56,16,8,5)
+            elif blob[5] == 2 and blob[6] == "left":
+                if pyxel.frame_count%30<10:
+                    pyxel.blt(blob[0],blob[1],0,2,68,12,12,5)
+                elif 10<=pyxel.frame_count%30<20:
+                    pyxel.blt(blob[0],blob[1]+2,0,16,70,16,10,5)
+                else:
+                    pyxel.blt(blob[0],blob[1]+4,0,32,72,16,8,5)
+            elif blob[5] == 2 and blob[6] == "right":
+                if pyxel.frame_count%30<10:
+                    pyxel.blt(blob[0],blob[1],0,50,68,12,12,5)
+                elif 10<=pyxel.frame_count%30<20:
+                    pyxel.blt(blob[0],blob[1]+2,0,64,70,16,10,5)
+                else:
+                    pyxel.blt(blob[0],blob[1]+4,0,80,72,16,8,5)
+            elif blob[5] == 3 and blob[6] == "left":
+                if pyxel.frame_count%30<10:
+                    pyxel.blt(blob[0],blob[1],0,2,84,12,12,5)
+                elif 10<=pyxel.frame_count%30<20:
+                    pyxel.blt(blob[0],blob[1]+2,0,16,86,16,10,5)
+                else:
+                    pyxel.blt(blob[0],blob[1]+4,0,32,88,16,8,5)
+            elif blob[5] == 3 and blob[6] == "right":
+                if pyxel.frame_count%30<10:
+                    pyxel.blt(blob[0],blob[1],0,50,84,12,12,5)
+                elif 10<=pyxel.frame_count%30<20:
+                    pyxel.blt(blob[0],blob[1]+2,0,64,86,16,10,5)
+                else:
+                    pyxel.blt(blob[0],blob[1]+4,0,80,88,16,8,5)
 
 pyxel.run(update,draw)
