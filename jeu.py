@@ -43,16 +43,16 @@ def spawn_coffre():
 
 def depv():
     global px, py
-    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(px//8+2,(py)//8) not in tuiles_inter :
+    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(px//8+2,(py+14)//8) not in tuiles_inter :
         px += 2
         
-    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget((px-2)//8,(py)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget((px-2)//8,(py+14)//8) not in tuiles_inter:
         px -= 2
     if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget(px//8,(py)//8+2) not in tuiles_inter:
         py += 2
-    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget(px//8+1,(py-2)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget(px//8,(py-2)//8) not in tuiles_inter:
         py -= 2
-
+        
 def cam():
     global cpx, cpy, px, py
     cpx = px-60
