@@ -18,12 +18,12 @@ capy = 0
 
 #coffre
 
-tuiles_inter = [(4,2)]
+tuiles_inter = [(4,2),(2,2),(2,3),(3,2),(3,3)]
 
 def hide():
     global px, py
-    for i in range(px//8-10, px//8+10):
-        for j in range(py//8-10, py//8+10):
+    for i in range(px//8-24, px//8+24):
+        for j in range(py//8-24, py//8+24):
             if math.sqrt((px-i*8)**2+(py-j*8)**2)>40:
                 pyxel.rect(i*8,j*8,8,8,0)
 
@@ -43,13 +43,14 @@ def spawn_coffre():
 
 def depv():
     global px, py
-    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(px//8+1,(py+4)//8) not in tuiles_inter :
+    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(px//8+2,(py)//8) not in tuiles_inter :
         px += 2
-    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget(px//8,(py+4)//8) not in tuiles_inter:
+        
+    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget((px-2)//8,(py)//8) not in tuiles_inter:
         px -= 2
-    if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget((px+4)//8,py//8+1) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget(px//8,(py)//8+2) not in tuiles_inter:
         py += 2
-    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget((px+4)//8,(py-1)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget(px//8+1,(py-2)//8) not in tuiles_inter:
         py -= 2
 
 def cam():
