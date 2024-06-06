@@ -52,6 +52,7 @@ def blobs_app():
     global blobs, temps_blob, niveau
     x = 0
     y = 0
+    
     if pyxel.frame_count-temps_blob==30 and len(blobs)<5:
         while pyxel.tilemap(0).pget(x//8,y//8) in tuiles_inter:
             if niveau == 0 or niveau == 1:
