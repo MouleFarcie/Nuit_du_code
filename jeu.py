@@ -10,6 +10,7 @@ sens = 1
 px = 32
 py = 32
 nb_clefs = 0
+vie = 3
 #cam
 cpx = px-60
 cpy = py-60
@@ -116,7 +117,7 @@ def draw():
 
     if menu == 0:
         pyxel.camera(ccx,ccy)
-        pyxel.text(ccx+60, ccy+90, "salut", 5)
+        pyxel.text(ccx+30, ccy+100, "PRESS SPACE TO START", 5)
     if menu == 1:
         hide()
         pyxel.blt(px,py,0,32,0,16,16,0)
