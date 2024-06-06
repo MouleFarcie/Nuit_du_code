@@ -14,6 +14,9 @@ cpy = py-60
 
 capx = 0
 capy = 0
+
+ccx = 0
+ccy = 0
 #clefs (3)
 
 #coffre
@@ -43,14 +46,14 @@ def spawn_coffre():
 
 def depv():
     global px, py
-    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(px//8+2,(py+14)//8) not in tuiles_inter :
+    if pyxel.btn(pyxel.KEY_RIGHT) and pyxel.tilemap(0).pget(px//8+2,(py+7)//8) not in tuiles_inter :
         px += 2
         
-    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget((px-2)//8,(py+14)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_LEFT) and pyxel.tilemap(0).pget((px-2)//8,(py+7)//8) not in tuiles_inter:
         px -= 2
-    if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget(px//8,(py)//8+2) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_DOWN) and pyxel.tilemap(0).pget((px+7)//8,(py)//8+2) not in tuiles_inter:
         py += 2
-    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget(px//8,(py-2)//8) not in tuiles_inter:
+    if pyxel.btn(pyxel.KEY_UP) and pyxel.tilemap(0).pget((px+7)//8,(py-2)//8) not in tuiles_inter:
         py -= 2
 
 def cam():
@@ -84,7 +87,14 @@ def carte():
     if py>=(384-62):
         capy = 384-118
         
-        
+def menuu():
+    global ccx, ccy, menu
+    
+    if menu == 0:
+        ccx+=1
+        ccy+=1
+        if pyxel.btn(pyxel.KEY_SPACE):
+            menu = 1
     
 
 def update():
@@ -93,15 +103,21 @@ def update():
     cam()
     spawn_coffre()
     carte()
+    menuu()
     
 def draw():
     pyxel.cls(3)
     pyxel.bltm(0,0,0,0,0,384,384)
-    hide()
-    pyxel.blt(px,py,0,32,0,16,16,0)
-    pyxel.blt(capx,capy,0,0,32,16,16,0)
-    pyxel.blt((capx+1+px/28),(capy+1+py/28),0,16,32,1,1,0)
 
-    pyxel.camera(cpx,cpy)
+    if menu == 0:
+        pyxel.camera(ccx,ccy)
+
+    if menu == 1:
+        hide()
+        pyxel.blt(px,py,0,32,0,16,16,0)
+        pyxel.blt(capx,capy,0,0,32,16,16,0)
+
+        pyxel.blt((capx+1+px/28),(capy+1+py/28),0,16,32,1,1,0)
+        pyxel.camera(cpx,cpy)
 
 pyxel.run(update,draw)
