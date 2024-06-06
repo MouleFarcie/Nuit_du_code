@@ -8,5 +8,4 @@ def update():
 def draw():
     pyxel.rect(0,0,3,127,9)
 
-
 pyxel.run(update,draw)
