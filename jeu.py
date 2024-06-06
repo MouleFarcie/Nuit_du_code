@@ -25,7 +25,7 @@ def hide():
     for i in range(px//8-10, px//8+10):
         for j in range(py//8-10, py//8+10):
             if math.sqrt((px-i*8)**2+(py-j*8)**2)>40:
-                pyxel.rect(i*8,j*8,16,16,0)
+                pyxel.rect(i*8,j*8,8,8,0)
 
 def colli_joueur_clef():
     global nb_clefs
